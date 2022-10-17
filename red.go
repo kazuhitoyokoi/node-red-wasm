@@ -1,53 +1,64 @@
 package main
-import ("fmt"; "encoding/json"; "time"; "net/http")
 
-type handler struct {
-    n int
-}
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"reflect"
+	"strconv"
+	"time"
+)
+
+type handler struct{}
 
 func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "testtest")
+	fmt.Fprintf(w, "testtest")
 }
 
-func execute (nodeId string) {
-    var flowJson = []byte(flows())
-    var flowItems []map[string]interface {}
-    json.Unmarshal(flowJson, &flowItems)
-    for i := 0; i < len(flowItems); i++ {
-        var nodeType = flowItems[i]["type"]
-        if nodeType == "inject" {
-            fmt.Println("hoge injecthoge")
-            go func() {
-            ticker := time.NewTicker(time.Second)
-            defer ticker.Stop()
-            done := make(chan bool)
-            go func() {
-                time.Sleep(10 * time.Second)
-                done <- true
-            }()
-            for {
-                select {
-                case <-done:
-                    fmt.Println("Done!")
-                    return
-                case t := <-ticker.C:
-                    fmt.Println("Current time: ", t)
-                }
-            }
-            }()
-        } else if nodeType == "debug" {
-            fmt.Println("hoge debughoge")
-        }
-        var nodeWires = flowItems[i]["wires"].([]interface {})
-        for j := 0; j < len(nodeWires); j++ {
-            var nodeWire = nodeWires[j].([]interface {})
-            fmt.Println(nodeWire[0])
-        }
-    }
+func execute(nodeId string, msg string) {
+	var flowJson = []byte(flows())
+	var flowItems []map[string]interface{}
+	json.Unmarshal(flowJson, &flowItems)
+	for i := 0; i < len(flowItems); i++ {
+		var nodeType = flowItems[i]["type"]
+		var currentNodeId = flowItems[i]["id"]
+		var nodeWires = flowItems[i]["wires"].([]interface{})
+		if nodeType == "inject" && nodeId == "" {
+			go func() {
+				ticker := time.NewTicker(time.Second)
+				defer ticker.Stop()
+				done := make(chan bool)
+				go func() {
+					time.Sleep(24 * time.Hour)
+					done <- true
+				}()
+				for {
+					select {
+					case <-done:
+						return
+					case t := <-ticker.C:
+						var msg2 = `{"payload":` + strconv.FormatInt(t.UnixMilli(), 10) + "}"
+						for j := 0; j < len(nodeWires); j++ {
+							var nodeWire = nodeWires[j].([]interface{})
+							execute(nodeWire[0].(string), msg2)
+						}
+
+					}
+				}
+			}()
+		} else if nodeType == "debug" && nodeId == currentNodeId {
+			var msgData interface{}
+			json.Unmarshal([]byte(msg), &msgData)
+			var output = msgData.(map[string]interface{})["payload"]
+			if reflect.TypeOf(output).Kind() == reflect.Float64 {
+				fmt.Println(strconv.FormatFloat(output.(float64), 'f', -1, 64))
+			}
+		}
+	}
 }
 
-func main () {
-    execute("")
-    http.Handle("/", new(handler))
-    http.ListenAndServe(":1880", nil)
+func main() {
+	execute("", "{}")
+	http.Handle("/", new(handler))
+	http.ListenAndServe(":1880", nil)
 }
