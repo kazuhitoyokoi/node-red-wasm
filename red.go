@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"reflect"
 	"strconv"
@@ -42,7 +43,6 @@ func execute(nodeId string, msg string) {
 							var nodeWire = nodeWires[j].([]interface{})
 							execute(nodeWire[0].(string), msg2)
 						}
-
 					}
 				}
 			}()
@@ -52,6 +52,21 @@ func execute(nodeId string, msg string) {
 			var output = msgData.(map[string]interface{})["payload"]
 			if reflect.TypeOf(output).Kind() == reflect.Float64 {
 				fmt.Println(strconv.FormatFloat(output.(float64), 'f', -1, 64))
+			} else if reflect.TypeOf(output).Kind() == reflect.Map {
+				jsonData, _ := json.Marshal(output)
+				fmt.Println(string(jsonData))
+			} else {
+				fmt.Println(output)
+			}
+		} else if nodeType == "http request" && nodeId == currentNodeId {
+			var url = flowItems[i]["url"]
+			resp, _ := http.Get(url.(string))
+			defer resp.Body.Close()
+			body, _ := io.ReadAll(resp.Body)
+			var msg2 = `{"payload":` + string(body) + "}"
+			for j := 0; j < len(nodeWires); j++ {
+				var nodeWire = nodeWires[j].([]interface{})
+				execute(nodeWire[0].(string), msg2)
 			}
 		}
 	}
