@@ -4,13 +4,13 @@
 	<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
 </head>
 <body>
-	<div id="map" style="width: 600px; height: 400px;"></div>
+	<div id="map" style="width: 100%; height: 100%;"></div>
 	<script src="./wasm_exec.js"></script>
 	<script>
 	  (async () => {
 		const go = new Go();
 		const { instance } = await WebAssembly.instantiateStreaming(
-		  fetch('red.wasm'),
+		  fetch('worldmap.wasm'),
 		  go.importObject
 		);
 		await go.run(instance);
@@ -24,10 +24,11 @@
     <script>
 		var map = L.map('map');
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+		map.setView([35.3386861, 139.4870951], 4);
 		function debug(msgData) {
 			var iss_position = JSON.parse(msgData).iss_position;
-			map.setView([iss_position.latitude, iss_position.longitude], 6);
-			L.marker([iss_position.latitude, iss_position.longitude]).addTo(map);
+			map.setView([iss_position.latitude, iss_position.longitude]);
+			L.marker([iss_position.latitude, iss_position.longitude],{"color": "#910000"}).addTo(map);
 		}
 	</script>
 </body>

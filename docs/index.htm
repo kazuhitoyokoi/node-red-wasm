@@ -6,7 +6,7 @@
     (async () => {
       const go = new Go();
       const { instance } = await WebAssembly.instantiateStreaming(
-        fetch('red.wasm'),
+        fetch('console.wasm'),
         go.importObject
       );
       await go.run(instance);
