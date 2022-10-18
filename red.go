@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"reflect"
 	"strconv"
+	"syscall/js"
 	"time"
 )
 
@@ -51,7 +52,9 @@ func execute(nodeId string, msg string) {
 			json.Unmarshal([]byte(msg), &msgData)
 			var output = msgData.(map[string]interface{})["payload"]
 			if reflect.TypeOf(output).Kind() == reflect.Float64 {
-				fmt.Println(strconv.FormatFloat(output.(float64), 'f', -1, 64))
+				var text = strconv.FormatFloat(output.(float64), 'f', -1, 64)
+				fmt.Println(text)
+				js.Global().Get("debug").Invoke(text)
 			} else if reflect.TypeOf(output).Kind() == reflect.Map {
 				jsonData, _ := json.Marshal(output)
 				fmt.Println(string(jsonData))
