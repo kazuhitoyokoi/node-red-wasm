@@ -1,9 +1,33 @@
 package main; func flows() string { return `
 [
     {
-        "id": "9677e77d09b17122",
+        "id": "8740d4c87aa226d5",
+        "type": "http request",
+        "z": "9690b924941ce0a2",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://api.open-notify.org/iss-now.json",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "9ae96b81d3eb6fe2"
+            ]
+        ]
+    },
+    {
+        "id": "7d5ef118b8c6f3cb",
         "type": "inject",
-        "z": "979ccb452915f125",
+        "z": "9690b924941ce0a2",
         "name": "",
         "props": [
             {
@@ -21,29 +45,28 @@ package main; func flows() string { return `
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 240,
-        "y": 160,
+        "x": 310,
+        "y": 200,
         "wires": [
             [
-                "3552c8ecdf006278"
+                "8740d4c87aa226d5"
             ]
         ]
     },
     {
-        "id": "3552c8ecdf006278",
+        "id": "9ae96b81d3eb6fe2",
         "type": "debug",
-        "z": "979ccb452915f125",
+        "z": "9690b924941ce0a2",
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
-        "console": true,
+        "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 450,
-        "y": 160,
+        "x": 660,
+        "y": 200,
         "wires": []
     }
 ]`}

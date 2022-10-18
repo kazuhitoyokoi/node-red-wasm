@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"reflect"
 	"strconv"
-	"syscall/js"
+	"syscall/js" // wasm
 	"time"
 )
 
@@ -51,16 +51,17 @@ func execute(nodeId string, msg string) {
 			var msgData interface{}
 			json.Unmarshal([]byte(msg), &msgData)
 			var output = msgData.(map[string]interface{})["payload"]
+			var text = ""
 			if reflect.TypeOf(output).Kind() == reflect.Float64 {
-				var text = strconv.FormatFloat(output.(float64), 'f', -1, 64)
-				fmt.Println(text)
-				js.Global().Get("debug").Invoke(text)
+				text = strconv.FormatFloat(output.(float64), 'f', -1, 64)
 			} else if reflect.TypeOf(output).Kind() == reflect.Map {
 				jsonData, _ := json.Marshal(output)
-				fmt.Println(string(jsonData))
+				text = string(jsonData)
 			} else {
-				fmt.Println(output)
+				text = output.(string)
 			}
+			fmt.Println(text)
+			js.Global().Get("debug").Invoke(text) // wasm
 		} else if nodeType == "http request" && nodeId == currentNodeId {
 			var url = flowItems[i]["url"]
 			resp, _ := http.Get(url.(string))
