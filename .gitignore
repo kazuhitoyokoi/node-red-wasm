@@ -1,5 +1,6 @@
 .DS_Store
 red
+flows.go
 
 # Binaries for programs and plugins
 *.exe
