@@ -18,8 +18,6 @@ jobs:
         #echo "package main; func flows() string { return \`" > flows.go
         #cat examples/console.json >> flows.go
         #echo "\`}" >> flows.go
-        GOOS=js
-        GOARCH=wasm
         go build -o docs/console.wasm
         #echo "package main; func flows() string { return \`" > flows.go
         #cat examples/worldmap.json >> flows.go
