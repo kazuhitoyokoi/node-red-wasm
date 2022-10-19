@@ -23,7 +23,7 @@ jobs:
         #echo "package main; func flows() string { return \`" > flows.go
         #cat examples/worldmap.json >> flows.go
         #echo "\`}" >> flows.go
-        #GOOS=js GOARCH=wasm go build -o docs/worldmap.wasm
+        #go build -o docs/worldmap.wasm
   release:
     runs-on: ubuntu-latest
     steps:
@@ -32,14 +32,16 @@ jobs:
       uses: actions/setup-go@v3
     - name: release
       run: |
+        go env -w GOOS=js GOARCH=wasm
+        go build -o docs/console.wasm
         echo "package main; func flows() string { return \`" > flows.go
         cat examples/console.json >> flows.go
         echo "\`}" >> flows.go
-        GOOS=js GOARCH=wasm go build -o docs/console.wasm
+        go build -o docs/console.wasm
         echo "package main; func flows() string { return \`" > flows.go
         cat examples/worldmap.json >> flows.go
         echo "\`}" >> flows.go
-        GOOS=js GOARCH=wasm go build -o docs/worldmap.wasm
+        go build -o docs/worldmap.wasm
         git config --global user.email "kazuhitoyokoi@nodered.jp"
         git config --global user.name "Kazuhito Yokoi"
         git add flows.go docs/*.wasm
