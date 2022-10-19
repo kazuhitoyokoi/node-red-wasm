@@ -43,4 +43,4 @@ jobs:
         git config --global user.name "Kazuhito Yokoi"
         git add flows.go docs/*.wasm
         git commit -m "Update wasm files"
-        git push
+        git push || true
