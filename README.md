@@ -1,4 +1,4 @@
-# WebAssembly implementation of Node-RED
+# Node-RED runtime for WebAssembly
 
 ## Demonstration
 - Console log
