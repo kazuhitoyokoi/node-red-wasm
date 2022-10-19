@@ -18,8 +18,19 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Build
-      run: go build -v ./...
+    #- name: Build
+    #  run: go build -v ./...
 
-    - name: Test
-      run: go test -v ./...
+    #- name: Test
+    #  run: go test -v ./...
+
+    - name: Build wasm
+      run: |
+        echo "package main; func flows() string { return \`" > flows.go
+        cat examples/console.json >> flows.go
+        echo "\`}" >> flows.go
+        GOOS=js GOARCH=wasm go build -o docs/console.wasm
+        echo "package main; func flows() string { return \`" > flows.go
+        cat examples/worldmap.json >> flows.go
+        echo "\`}" >> flows.go
+        GOOS=js GOARCH=wasm go build -o docs/worldmap.wasm
