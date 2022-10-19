@@ -8,7 +8,7 @@ package main; func flows() string { return `
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://api.open-notify.org/iss-now.json",
+        "url": "https://api.wheretheiss.at/v1/satellites/25544",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -69,4 +69,5 @@ package main; func flows() string { return `
         "y": 200,
         "wires": []
     }
-]`}
+]
+`}
