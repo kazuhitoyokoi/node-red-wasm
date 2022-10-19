@@ -21,15 +21,15 @@
 		inst = await WebAssembly.instantiate()
 	  }
 	</script>
-    <script>
-		var map = L.map('map');
-		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-		map.setView([35.3386861, 139.4870951], 4);
-		function debug(msgData) {
-			var msg = JSON.parse(msgData);
-			map.setView([msg.latitude, msg.longitude]);
-			L.marker([msg.latitude, msg.longitude],{"color": "#910000"}).addTo(map);
-		}
+        <script>
+          var map = L.map('map');
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+          map.setView([35.3386861, 139.4870951], 4);
+          function debug(msgData) {
+            var msg = JSON.parse(msgData);
+            map.setView([msg.latitude, msg.longitude]);
+            L.marker([msg.latitude, msg.longitude],{"color": "#910000"}).addTo(map);
+          }
 	</script>
 </body>
 </html>
