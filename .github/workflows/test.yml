@@ -1,0 +1,23 @@
+name: test
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Go
+      uses: actions/setup-go@v3
+    - name: build
+      run: |
+        echo "package main; func flows() string { return \`" > flows.go
+        cat examples/console.json >> flows.go
+        echo "\`}" >> flows.go
+        GOOS=js GOARCH=wasm go build -o docs/console.wasm
+        echo "package main; func flows() string { return \`" > flows.go
+        cat examples/worldmap.json >> flows.go
+        echo "\`}" >> flows.go
+        GOOS=js GOARCH=wasm go build -o docs/worldmap.wasm
