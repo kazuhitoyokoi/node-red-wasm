@@ -34,3 +34,8 @@ jobs:
         cat examples/worldmap.json >> flows.go
         echo "\`}" >> flows.go
         GOOS=js GOARCH=wasm go build -o docs/worldmap.wasm
+        git config --global user.email "kazuhitoyokoi@nodered.jp"
+        git config --global user.name "Kazuhito Yokoi"
+          git add docs/*.wasm
+          git commit -m "Update wasm files"
+          git push
