@@ -41,6 +41,6 @@ jobs:
         GOOS=js GOARCH=wasm go build -o docs/worldmap.wasm
         git config --global user.email "kazuhitoyokoi@nodered.jp"
         git config --global user.name "Kazuhito Yokoi"
-        git add docs/*.wasm
+        git add flows.go docs/*.wasm
         git commit -m "Update wasm files"
         git push
