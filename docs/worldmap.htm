@@ -26,9 +26,9 @@
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 		map.setView([35.3386861, 139.4870951], 4);
 		function debug(msgData) {
-			var iss_position = JSON.parse(msgData).iss_position;
-			map.setView([iss_position.latitude, iss_position.longitude]);
-			L.marker([iss_position.latitude, iss_position.longitude],{"color": "#910000"}).addTo(map);
+			var msg = JSON.parse(msgData);
+			map.setView([msg.latitude, msg.longitude]);
+			L.marker([msg.latitude, msg.longitude],{"color": "#910000"}).addTo(map);
 		}
 	</script>
 </body>
