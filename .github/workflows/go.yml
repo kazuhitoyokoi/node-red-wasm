@@ -15,7 +15,7 @@ jobs:
     #  run: go test -v ./...
     - name: build
       run: |
-        node -e "console.log('package main; func flows() string { return \`'+JSON.stringify(require(require('path').join('.','examples','console.json'))+'\`}')" > flows.go
+        node -e "console.log('package main; func flows() string { return \`'+JSON.stringify(require(require('path').join('.','examples','console.json')))+'\`}')" > flows.go
         go env -w GOOS=js GOARCH=wasm
         go build -o docs/console.wasm
         #echo "package main; func flows() string { return \`" > flows.go
