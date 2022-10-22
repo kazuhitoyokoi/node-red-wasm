@@ -3,10 +3,10 @@ package main; func flows() string { return `
     {
         "id": "8740d4c87aa226d5",
         "type": "http request",
-        "z": "9690b924941ce0a2",
+        "z": "506a7e799b8b8c67",
         "name": "",
         "method": "GET",
-        "ret": "txt",
+        "ret": "obj",
         "paytoqs": "ignore",
         "url": "https://api.wheretheiss.at/v1/satellites/25544",
         "tls": "",
@@ -16,8 +16,8 @@ package main; func flows() string { return `
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 490,
-        "y": 200,
+        "x": 390,
+        "y": 120,
         "wires": [
             [
                 "9ae96b81d3eb6fe2"
@@ -27,7 +27,7 @@ package main; func flows() string { return `
     {
         "id": "7d5ef118b8c6f3cb",
         "type": "inject",
-        "z": "9690b924941ce0a2",
+        "z": "506a7e799b8b8c67",
         "name": "",
         "props": [
             {
@@ -45,8 +45,8 @@ package main; func flows() string { return `
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 310,
-        "y": 200,
+        "x": 210,
+        "y": 120,
         "wires": [
             [
                 "8740d4c87aa226d5"
@@ -56,7 +56,7 @@ package main; func flows() string { return `
     {
         "id": "9ae96b81d3eb6fe2",
         "type": "debug",
-        "z": "9690b924941ce0a2",
+        "z": "506a7e799b8b8c67",
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
@@ -65,9 +65,8 @@ package main; func flows() string { return `
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 200,
+        "x": 560,
+        "y": 120,
         "wires": []
     }
-]
-`}
+]`}
