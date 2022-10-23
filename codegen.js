@@ -1,4 +1,5 @@
+var fs = require('fs');
 console.log('package main');
 console.log('func flows() string { return `');
-console.log(require(process.argv[2]));
+console.log(fs.readFileSync(process.argv[2]).toString());
 console.log('`}');
