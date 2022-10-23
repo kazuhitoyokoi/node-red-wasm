@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println("package main")
+	fmt.Println("package main;")
 	fmt.Println("func flows() string { return `")
 	bytes, _ := ioutil.ReadFile(os.Args[1])
 	fmt.Println((string)(bytes))
