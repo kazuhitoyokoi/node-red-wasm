@@ -1,15 +1,7 @@
-#echo "package main; func flows() string { return \`" > flows.go
-#cat $1 >> flows.go
-#echo "\`}" >> flows.go
-
-echo "package main; func flows() string { return \`" > flows.go
-cat examples/console.json >> flows.go
-echo "\`}" >> flows.go
+go run codegen/codegen.go examples/console.json > flows.go
 GOOS=js GOARCH=wasm go build -o docs/console.wasm
 
-echo "package main; func flows() string { return \`" > flows.go
-cat examples/worldmap.json >> flows.go
-echo "\`}" >> flows.go
+go run codegen/codegen.go examples/worldmap.json > flows.go
 GOOS=js GOARCH=wasm go build -o docs/worldmap.wasm
 
 #go run red.go flows.go
