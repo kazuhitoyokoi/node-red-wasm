@@ -29,7 +29,7 @@ jobs:
     - name: release
       run: |
         go env -w GOOS=js GOARCH=wasm
-        node codegen.js ./examples/worldmap.json > flows.go
+        node codegen.js ./examples/console.json > flows.go
         go build -o docs/console.wasm
         node codegen.js ./examples/worldmap.json > flows.go
         go build -o docs/worldmap.wasm
