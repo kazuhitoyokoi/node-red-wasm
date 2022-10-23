@@ -1,6 +1,5 @@
 .DS_Store
 flows.go
-*.wasm
 
 # Binaries for programs and plugins
 *.exe
