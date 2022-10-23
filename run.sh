@@ -1,7 +1,7 @@
-go run codegen/codegen.go examples/console.json > flows.go
+go run examples/codegen.go examples/console.json > flows.go
 GOOS=js GOARCH=wasm go build -o docs/console.wasm
 
-go run codegen/codegen.go examples/worldmap.json > flows.go
+go run examples/codegen.go examples/worldmap.json > flows.go
 GOOS=js GOARCH=wasm go build -o docs/worldmap.wasm
 
 #go run red.go flows.go
