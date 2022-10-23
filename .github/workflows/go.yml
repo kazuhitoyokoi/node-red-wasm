@@ -15,10 +15,10 @@ jobs:
     #  run: go test -v ./...
     - name: build
       run: |
-        go run examples/codegen.go examples/worldmap.json > flows.go
+        node codegen.js ./examples/worldmap.json > flows.go
         go env -w GOOS=js GOARCH=wasm
         go build -o docs/console.wasm
-        go run examples/codegen.go examples/worldmap.json > flows.go
+        node codegen.js ./examples/worldmap.json > flows.go
         go build -o docs/worldmap.wasm
   release:
     runs-on: ubuntu-latest
