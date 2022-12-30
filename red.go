@@ -53,9 +53,10 @@ func execute(nodeId string, msg string) {
 			json.Unmarshal([]byte(msg), &msgData)
 			var output = msgData.(map[string]interface{})["payload"]
 			var text = ""
-			if reflect.TypeOf(output).Kind() == reflect.Float64 {
+			var kind = reflect.TypeOf(output).Kind()
+			if kind == reflect.Float64 {
 				text = strconv.FormatFloat(output.(float64), 'f', -1, 64)
-			} else if reflect.TypeOf(output).Kind() == reflect.Map {
+			} else if kind == reflect.Map || kind == reflect.Slice {
 				jsonData, _ := json.Marshal(output)
 				text = string(jsonData)
 			} else {
