@@ -9,7 +9,7 @@ func flows() string { return `
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "https://api.wheretheiss.at/v1/satellites/25544",
+        "url": "https://kazuhitoyokoi.github.io/ogiri-bus-api/bus.json",
         "tls": "",
         "persist": false,
         "proxy": "",
