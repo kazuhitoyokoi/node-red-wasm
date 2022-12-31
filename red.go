@@ -27,9 +27,10 @@ func execute(nodeId string, msg string) {
 		var currentNodeId = flowItems[i]["id"]
 		var nodeWires = flowItems[i]["wires"].([]interface{})
 		if nodeType == "inject" && nodeId == "" {
-			var repeat, _ = strconv.Atoi(flowItems[i]["repeat"].(string))
+			//hoge var repeat, _ = strconv.Atoi(flowItems[i]["repeat"].(string))
 			go func() {
-				ticker := time.NewTicker(time.Duration(repeat) * time.Second)
+				//hoge ticker := time.NewTicker(time.Duration(repeat) * time.Second)
+				ticker := time.NewTicker(time.Second)
 				defer ticker.Stop()
 				done := make(chan bool)
 				go func() {
