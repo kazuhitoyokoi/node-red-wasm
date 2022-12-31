@@ -33,6 +33,8 @@ jobs:
         go build -o docs/console.wasm
         node codegen.js ./examples/worldmap.json > flows.go
         go build -o docs/worldmap.wasm
+        node codegen.js ./examples/bus.json > flows.go
+        go build -o docs/bus.wasm
         git config --global user.email "kazuhitoyokoi@nodered.jp"
         git config --global user.name "Kazuhito Yokoi"
         git add flows.go docs/*.wasm

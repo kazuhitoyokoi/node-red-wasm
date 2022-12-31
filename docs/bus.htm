@@ -24,13 +24,13 @@
     <script>
       var map = L.map('map');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-      map.setView([35.3386861, 139.4870951], 7);
+      map.setView([35.3386861, 139.4870951], 4);
       function debug(msgData) {
         var msg = JSON.parse(msgData);
         //map.setView([msg.latitude, msg.longitude]);
         //L.marker([msg.latitude, msg.longitude],{"color": "#910000"}).addTo(map);
         for (var i = 0; i < msg.length; i++) {
-          //map.setView([msg.latitude, msg.longitude]);
+          map.setView([msg[i].stop_lat, msg[i].stop_lon]);
           L.marker([msg[i].stop_lat, msg[i].stop_lon],{"color": "#910000"}).addTo(map);
         }
       }
