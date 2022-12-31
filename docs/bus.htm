@@ -25,10 +25,8 @@
       var map = L.map('map');
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
       map.setView([35.3386861, 139.4870951], 7);
-        alert("msgData1");
       function debug(msgData) {
         var msg = JSON.parse(msgData);
-        alert(msg);
         //map.setView([msg.latitude, msg.longitude]);
         //L.marker([msg.latitude, msg.longitude],{"color": "#910000"}).addTo(map);
         for (var i = 0; i < msg.length; i++) {

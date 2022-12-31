@@ -4,7 +4,7 @@ func flows() string { return `
     {
         "id": "8740d4c87aa226d5",
         "type": "http request",
-        "z": "506a7e799b8b8c67",
+        "z": "54d24c374bb820d2",
         "name": "",
         "method": "GET",
         "ret": "obj",
@@ -17,7 +17,7 @@ func flows() string { return `
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 390,
+        "x": 330,
         "y": 120,
         "wires": [
             [
@@ -28,7 +28,7 @@ func flows() string { return `
     {
         "id": "7d5ef118b8c6f3cb",
         "type": "inject",
-        "z": "506a7e799b8b8c67",
+        "z": "54d24c374bb820d2",
         "name": "",
         "props": [
             {
@@ -39,14 +39,14 @@ func flows() string { return `
                 "vt": "str"
             }
         ],
-        "repeat": "1",
+        "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 210,
+        "x": 150,
         "y": 120,
         "wires": [
             [
@@ -57,7 +57,7 @@ func flows() string { return `
     {
         "id": "9ae96b81d3eb6fe2",
         "type": "debug",
-        "z": "506a7e799b8b8c67",
+        "z": "54d24c374bb820d2",
         "name": "debug 1",
         "active": true,
         "tosidebar": true,
@@ -66,7 +66,7 @@ func flows() string { return `
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 560,
+        "x": 500,
         "y": 120,
         "wires": []
     }
