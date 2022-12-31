@@ -1,4 +1,6 @@
+//go:build js && wasm
 // +build js,wasm
+
 package main
 
 import (
@@ -27,25 +29,34 @@ func execute(nodeId string, msg string) {
 		var currentNodeId = flowItems[i]["id"]
 		var nodeWires = flowItems[i]["wires"].([]interface{})
 		if nodeType == "inject" && nodeId == "" {
+			var repeat = flowItems[i]["repeat"].(string)
 			go func() {
-				//hoge var repeat, _ = strconv.Atoi(flowItems[i]["repeat"].(string))
-				//hoge ticker := time.NewTicker(time.Duration(repeat) * time.Second)
-				ticker := time.NewTicker(time.Second)
-				defer ticker.Stop()
-				done := make(chan bool)
-				go func() {
-					time.Sleep(24 * time.Hour)
-					done <- true
-				}()
-				for {
-					select {
-					case <-done:
-						return
-					case t := <-ticker.C:
-						var msg2 = `{"payload":` + strconv.FormatInt(t.UnixMilli(), 10) + "}"
-						for j := 0; j < len(nodeWires); j++ {
-							var nodeWire = nodeWires[j].([]interface{})
-							execute(nodeWire[0].(string), msg2)
+				if repeat == "" {
+					var t = time.Now()
+					var msg2 = `{"payload":` + strconv.FormatInt(t.UnixMilli(), 10) + "}"
+					for j := 0; j < len(nodeWires); j++ {
+						var nodeWire = nodeWires[j].([]interface{})
+						execute(nodeWire[0].(string), msg2)
+					}
+				} else {
+					i, _ = strconv.Atoi(repeat)
+					ticker := time.NewTicker(time.Duration(i) * time.Second)
+					defer ticker.Stop()
+					done := make(chan bool)
+					go func() {
+						time.Sleep(24 * time.Hour)
+						done <- true
+					}()
+					for {
+						select {
+						case <-done:
+							return
+						case t := <-ticker.C:
+							var msg2 = `{"payload":` + strconv.FormatInt(t.UnixMilli(), 10) + "}"
+							for j := 0; j < len(nodeWires); j++ {
+								var nodeWire = nodeWires[j].([]interface{})
+								execute(nodeWire[0].(string), msg2)
+							}
 						}
 					}
 				}
