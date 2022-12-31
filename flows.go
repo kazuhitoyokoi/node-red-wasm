@@ -4,8 +4,8 @@ func flows() string { return `
     {
         "id": "8740d4c87aa226d5",
         "type": "http request",
-        "z": "54d24c374bb820d2",
-        "name": "",
+        "z": "66e0c9fac19ba178",
+        "name": "APIからバス情報取得",
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -17,8 +17,8 @@ func flows() string { return `
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 330,
-        "y": 120,
+        "x": 220,
+        "y": 140,
         "wires": [
             [
                 "9ae96b81d3eb6fe2"
@@ -28,8 +28,8 @@ func flows() string { return `
     {
         "id": "7d5ef118b8c6f3cb",
         "type": "inject",
-        "z": "54d24c374bb820d2",
-        "name": "",
+        "z": "66e0c9fac19ba178",
+        "name": "開始時に実行",
         "props": [
             {
                 "p": "payload"
@@ -47,7 +47,7 @@ func flows() string { return `
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 120,
+        "y": 60,
         "wires": [
             [
                 "8740d4c87aa226d5"
@@ -57,18 +57,20 @@ func flows() string { return `
     {
         "id": "9ae96b81d3eb6fe2",
         "type": "debug",
-        "z": "54d24c374bb820d2",
-        "name": "debug 1",
+        "z": "66e0c9fac19ba178",
+        "name": "地図UIに位置情報を渡す",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 500,
-        "y": 120,
+        "x": 270,
+        "y": 220,
         "wires": []
     }
 ]
+
 `}
