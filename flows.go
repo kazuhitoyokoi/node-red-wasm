@@ -9,7 +9,7 @@ func flows() string { return `
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "https://kazuhitoyokoi.github.io/ogiri-bus-api/bus.json",
+        "url": "https://kazuhitoyokoi.github.io/node-red-ogiri-nagoya/bus.json",
         "tls": "",
         "persist": false,
         "proxy": "",
