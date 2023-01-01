@@ -2,13 +2,13 @@
 
 ## Demonstration
 - Console log
-https://kazuhitoyokoi.github.io/node-red-go
+https://kazuhitoyokoi.github.io/node-red-wasm
 
 ![](examples/consoleflow.png)
 ![](examples/console.png)
 
 - ISS location map
-https://kazuhitoyokoi.github.io/node-red-go/worldmap.htm
+https://kazuhitoyokoi.github.io/node-red-wasm/worldmap.htm
 
 ![](examples/worldmapflow.png)
 ![](examples/worldmap.png)
