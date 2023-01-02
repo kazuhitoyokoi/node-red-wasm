@@ -37,7 +37,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "100",
+        "repeat": "10",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
